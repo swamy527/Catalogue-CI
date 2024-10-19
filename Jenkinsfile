@@ -24,6 +24,7 @@ pipeline {
                     packageVersion = props.version
                     echo "application version is ${packageVersion}"
                 }
+            }
         }
         stage('Deploy') {
             steps {

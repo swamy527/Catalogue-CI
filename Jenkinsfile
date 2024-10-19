@@ -50,10 +50,10 @@ pipeline {
                     nexusUrl: "${nexurl}",
                     groupId: 'com.roboshop',
                     version: "${packageVersion}",
-                    repository: 'cat',
+                    repository: 'catalogue',
                     credentialsId: 'nexus-auth',
                     artifacts: [
-                        [artifactId: catalogue,
+                        [artifactId: cat,
                         classifier: '',
                         file: 'catalogue.zip',
                         type: 'zip']

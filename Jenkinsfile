@@ -26,11 +26,10 @@ pipeline {
                 }
             }
         }
-        stage('Deploy') {
+        stage('install-dependencies') {
             steps {
                 sh """
-                     echo "Here are the environment variables"
-                     sleep 10
+                    npm install
                 """
             }
         }

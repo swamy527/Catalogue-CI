@@ -33,8 +33,20 @@ pipeline {
                 """
             }
         }
+        stage('zip-folder') {
+            steps {
+                sh """
+                    zip -q -r catalogue.zip ./* -x ".git" -x "*.zip"
+                """
+            }
+        }
     }
     post {
+        always {
+            deleteDir()
+        } {
+            echo 'I succeeded!'
+        }
         success {
             echo 'I succeeded!'
         }

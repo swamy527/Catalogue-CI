@@ -43,9 +43,9 @@ pipeline {
         }
     }
     post {
-        always {
-            deleteDir()
-        } 
+        // always {
+        //     deleteDir()
+        // } 
         success {
             echo 'I succeeded!'
         }

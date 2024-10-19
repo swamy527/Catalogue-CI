@@ -37,6 +37,7 @@ pipeline {
             steps {
                 sh """
                     zip -q -r catalogue.zip ./* -x ".git" -x "*.zip"
+                    ls -l
                 """
             }
         }

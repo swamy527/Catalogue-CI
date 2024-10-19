@@ -6,6 +6,7 @@ pipeline {
     }
     environment {
         packageVersion = ''
+        nexusurl = '52.23.187.24:8081'
     }
 
     options {
@@ -41,11 +42,30 @@ pipeline {
                 """
             }
         }
+         stage('publish-artifact') {
+            steps {
+                nexusArtifactUploader(
+                nexusVersion: 'nexus3',
+                protocol: 'http',
+                nexusUrl: "${nexusurl}",
+                groupId: 'com.roboshop',
+                version: "${packageVersion}",
+                repository: 'catalogue',
+                credentialsId: 'nexus-auth',
+                artifacts: [
+                    [artifactId: catalogue,
+                    classifier: '',
+                    file: 'catalogue.zip',
+                    type: 'zip']
+        ]
+     )
+            }
+        }
     }
     post {
-        // always {
-        //     deleteDir()
-        // } 
+        always {
+            deleteDir()
+        } 
         success {
             echo 'I succeeded!'
         }

@@ -79,7 +79,7 @@ pipeline {
     }
     post {
         always {
-            deleteDir()
+            echo "hello"
         } 
         success {
             slackSend(channel: 'all-testjen', color: 'good',message: 'Build Successful')

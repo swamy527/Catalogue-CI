@@ -19,6 +19,11 @@ pipeline {
     //     string(name: 'PERSON', defaultValue: 'Mr Jenkins', description: 'Who should I say hello to?')
     // }
     stages {
+        stage('build number') {
+            steps {
+                sh 'echo "Build: ${BUILD_NUMBER} Successful"'
+            }
+        }
         stage('version-scan') {
             steps {
                 script {

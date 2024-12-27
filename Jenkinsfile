@@ -85,7 +85,7 @@ pipeline {
             slackSend(channel: 'all-testjen', color: 'good',message: 'Build Successful')
         }
         failure {
-            echo 'I failed :('
+            slackSend(channel: 'all-testjen', color: 'danger',message: 'Build failed')
         }
     }
 }

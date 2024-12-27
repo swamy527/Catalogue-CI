@@ -82,7 +82,7 @@ pipeline {
             deleteDir()
         } 
         success {
-            slackSend(channel: 'all-testjen',message: 'Build Successful')
+            slackSend(channel: 'all-testjen', color: 'good',message: 'Build Successful')
         }
         failure {
             echo 'I failed :('

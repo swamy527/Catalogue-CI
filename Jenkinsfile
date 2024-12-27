@@ -28,6 +28,11 @@ pipeline {
                 }
             }
         }
+        stage('sonar-scanning') {
+            steps {
+               sh 'sonar-scanner'
+            }
+        }
         stage('install-dependencies') {
             steps {
                 sh """

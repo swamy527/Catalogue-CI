@@ -6,7 +6,7 @@ pipeline {
     }
     environment {
         packageVersion = ''
-        nexurl = '3.80.129.216:8081'
+        nexurl = '54.84.245.147:8081'
     }
 
     options {
@@ -33,40 +33,40 @@ pipeline {
                sh 'sonar-scanner'
             }
         }
-        // stage('install-dependencies') {
-        //     steps {
-        //         sh """
-        //             npm install
-        //         """
-        //     }
-        // }
-        // stage('zip-folder') {
-        //     steps {
-        //         sh """
-        //             zip -q -r catalogue.zip ./* -x ".git" -x "*.zip"
-        //             ls -l
-        //         """
-        //     }
-        // }
-        // stage('publish-artifact') {
-        //     steps {
-        //         nexusArtifactUploader(
-        //             nexusVersion: 'nexus3',
-        //             protocol: 'http',
-        //             nexusUrl: "${nexurl}",
-        //             groupId: 'com.roboshop',
-        //             version: "${packageVersion}",
-        //             repository: 'catalogue',
-        //             credentialsId: 'nexus-auth',
-        //             artifacts: [
-        //                 [artifactId: 'catalogue',
-        //                 classifier: '',
-        //                 file: 'catalogue.zip',
-        //                 type: 'zip']
-        //             ]
-        //         )
-        //     }
-        // }
+        stage('install-dependencies') {
+            steps {
+                sh """
+                    npm install
+                """
+            }
+        }
+        stage('zip-folder') {
+            steps {
+                sh """
+                    zip -q -r catalogue.zip ./* -x ".git" -x "*.zip"
+                    ls -l
+                """
+            }
+        }
+        stage('publish-artifact') {
+            steps {
+                nexusArtifactUploader(
+                    nexusVersion: 'nexus3',
+                    protocol: 'http',
+                    nexusUrl: "${nexurl}",
+                    groupId: 'com.roboshop',
+                    version: "${packageVersion}",
+                    repository: 'catalogue',
+                    credentialsId: 'nexus-auth',
+                    artifacts: [
+                        [artifactId: 'catalogue',
+                        classifier: '',
+                        file: 'catalogue.zip',
+                        type: 'zip']
+                    ]
+                )
+            }
+        }
         // stage('push-version') {
         //     steps {
         //         build job: 'catalogue-deploy', wait: true,

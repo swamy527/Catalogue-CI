@@ -1,12 +1,12 @@
 pipeline {
-    agent any
-    //     node {
-    //        label 'Agent-1'   
-    //     }
-    // }
+    agent {
+        node {
+           label 'agent-1'   
+        }
+    }
     environment {
         packageVersion = ''
-        nexurl = '52.72.82.201:8081'
+        nexurl = '3.80.229.248:8081'
     }
 
     options {
@@ -33,11 +33,11 @@ pipeline {
                 }
             }
         }
-        stage('sonar-scanning') {
-            steps {
-               sh 'sonar-scanner'
-            }
-        }
+        // stage('sonar-scanning') {
+        //     steps {
+        //        sh 'sonar-scanner'
+        //     }
+        // }
         stage('install-dependencies') {
             steps {
                 sh """

@@ -6,7 +6,7 @@ pipeline {
     }
     environment {
         packageVersion = ''
-        nexurl = '3.80.229.248:8081'
+        nexurl = '54.226.143.16:8081'
     }
 
     options {
@@ -33,11 +33,11 @@ pipeline {
                 }
             }
         }
-        // stage('sonar-scanning') {
-        //     steps {
-        //        sh 'sonar-scanner'
-        //     }
-        // }
+        stage('sonar-scanning') {
+            steps {
+               sh 'sonar-scanner'
+            }
+        }
         stage('install-dependencies') {
             steps {
                 sh """

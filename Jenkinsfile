@@ -72,25 +72,25 @@ pipeline {
                 )
             }
         }
-        stage('push-version') {
-            steps {
-                build job: 'catalogue-deploy', wait: true,
-                parameters: [
-                                 string(name: 'version', value: "${packageVersion}"),
-                                 string(name: 'environment', value: 'dev')
-                ]
-            }
-        }
+        // stage('push-version') {
+        //     steps {
+        //         build job: 'catalogue-deploy', wait: true,
+        //         parameters: [
+        //                          string(name: 'version', value: "${packageVersion}"),
+        //                          string(name: 'environment', value: 'dev')
+        //         ]
+        //     }
+        // }
     }
     post {
         always {
             deleteDir()
         } 
-        success {
-            slackSend(channel: 'all-testjen', color: 'good',message: "Build: ${BUILD_NUMBER} Successful")
-        }
-        failure {
-            slackSend(channel: 'all-testjen', color: 'danger',message: 'Build failed')
-        }
+        // success {
+        //     slackSend(channel: 'all-testjen', color: 'good',message: "Build: ${BUILD_NUMBER} Successful")
+        // }
+        // failure {
+        //     slackSend(channel: 'all-testjen', color: 'danger',message: 'Build failed')
+        // }
     }
 }
